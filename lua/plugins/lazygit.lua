@@ -1,8 +1,33 @@
--- Adds git related signs to the gutter, as well as utilities for managing changes
--- NOTE: gitsigns is already included in init.lua but contains only the base
--- config. This will add also the recommended keymaps.
+local keymapsGit = {
+  lazy = {
+    { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+  },
+}
 
 return {
+  {
+    'kdheepak/lazygit.nvim',
+    lazy = true,
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = keymapsGit.lazy,
+  },
+
+  -- Adds git related signs to the gutter, as well as utilities for managing changes
+  -- NOTE: gitsigns is already included in init.lua but contains only the base
+  -- config. This will add also the recommended keymaps.
+
   {
     'lewis6991/gitsigns.nvim',
     opts = {
